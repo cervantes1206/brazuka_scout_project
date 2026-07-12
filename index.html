@@ -269,6 +269,22 @@ header{
 .service-card h4{font-family:var(--display);font-size:19px;margin-bottom:10px;text-transform:uppercase;}
 .service-card p{font-size:14px;color:var(--text-muted-light);}
 
+/* ---------- equipo ---------- */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:44px;}
+.team-card{
+  background:#fff;border-radius:16px;border:1px solid var(--paper-2);
+  padding:26px 20px;text-align:center;transition:transform .25s, box-shadow .25s;
+}
+.team-card:hover{transform:translateY(-6px);box-shadow:0 22px 40px rgba(26,15,31,.12);}
+.team-photo{
+  width:88px;height:88px;border-radius:50%;margin:0 auto 16px;
+  display:flex;align-items:center;justify-content:center;
+}
+.team-photo .initials{font-family:var(--display);font-size:26px;color:#fff;}
+.team-card h4{font-family:var(--display);font-size:18px;text-transform:uppercase;margin-bottom:4px;}
+.team-role{font-family:var(--mono);font-size:11px;color:var(--pink);text-transform:uppercase;font-weight:700;margin-bottom:10px;letter-spacing:.03em;}
+.team-bio{font-size:13px;color:var(--text-muted-dark);}
+
 /* ---------- DT section ---------- */
 .dt-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;}
 .board{
@@ -384,12 +400,14 @@ footer{background:var(--ink);color:var(--text-muted-light);padding:60px 0 26px;}
   .nav-links{display:none;}
   .burger{display:block;}
   .nav-right .cta-btn{display:none;}
+  .team-grid{grid-template-columns:repeat(2,1fr);}
 }
 @media(max-width:600px){
   .wrap{padding:0 20px;}
   section{padding:70px 0;}
   .field-row{grid-template-columns:1fr;}
   .foot-grid{grid-template-columns:1fr;}
+  .team-grid{grid-template-columns:1fr;}
 }
 @media (prefers-reduced-motion: reduce){
   *{animation:none!important;transition:none!important;}
@@ -408,6 +426,7 @@ footer{background:var(--ink);color:var(--text-muted-light);padding:60px 0 26px;}
       <li><a href="#historias" data-i18n="nav1">Historias</a></li>
       <li><a href="#noticias" data-i18n="nav1b">Noticias</a></li>
       <li><a href="#servicios" data-i18n="nav2">Servicios</a></li>
+      <li><a href="#equipo" data-i18n="navteam">Equipo</a></li>
       <li><a href="#dt" data-i18n="nav3">Con el DT</a></li>
       <li><a href="#comunidad" data-i18n="nav4">Comunidad</a></li>
       <li><a href="#blog" data-i18n="nav5">Publicaciones</a></li>
@@ -427,6 +446,7 @@ footer{background:var(--ink);color:var(--text-muted-light);padding:60px 0 26px;}
     <a href="#historias" data-i18n="nav1">Historias</a>
     <a href="#noticias" data-i18n="nav1b">Noticias</a>
     <a href="#servicios" data-i18n="nav2">Servicios</a>
+    <a href="#equipo" data-i18n="navteam">Equipo</a>
     <a href="#dt" data-i18n="nav3">Con el DT</a>
     <a href="#comunidad" data-i18n="nav4">Comunidad</a>
     <a href="#blog" data-i18n="nav5">Publicaciones</a>
@@ -581,6 +601,41 @@ footer{background:var(--ink);color:var(--text-muted-light);padding:60px 0 26px;}
         <div class="sic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v4H4zM4 12h10v8H4zM17 12h3v8h-3z"/></svg></div>
         <h4 data-i18n="serv6t">Comunidad Brazuka</h4>
         <p data-i18n="serv6p">Acceso a la red social interna para compartir progreso y ganar visibilidad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section id="equipo">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="teameyebrow">Quiénes somos</span>
+    <h2 class="section-title" data-i18n="teamtitle">Equipo de trabajo</h2>
+    <p class="section-sub" data-i18n="teamsub">Los scouts, entrenadores y analistas que evalúan cada video y acompañan a los jugadores en su camino.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-photo" style="background:linear-gradient(150deg,var(--pink),var(--ink))"><span class="initials">RC</span></div>
+        <h4>Rodrigo Castro</h4>
+        <p class="team-role" data-i18n="team1role">Fundador · Jefe de Scouting</p>
+        <p class="team-bio" data-i18n="team1bio">Ex jugador profesional, lleva 12 años evaluando talento juvenil en Sudamérica.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-photo" style="background:linear-gradient(150deg,var(--teal),var(--ink))"><span class="initials">CM</span></div>
+        <h4>Camila Duarte</h4>
+        <p class="team-role" data-i18n="team2role">Directora Técnica</p>
+        <p class="team-bio" data-i18n="team2bio">Lidera el cuerpo técnico y el contenido de "Con el DT" para los jugadores en radar.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-photo" style="background:linear-gradient(150deg,var(--gold),var(--ink))"><span class="initials">FS</span></div>
+        <h4>Felipe Santos</h4>
+        <p class="team-role" data-i18n="team3role">Analista de Video</p>
+        <p class="team-bio" data-i18n="team3bio">Revisa cada envío y arma la ficha técnica que ven los clubes y agentes aliados.</p>
+      </div>
+      <div class="team-card">
+        <div class="team-photo" style="background:linear-gradient(150deg,var(--pink-dark),var(--ink))"><span class="initials">LA</span></div>
+        <h4>Luana Alves</h4>
+        <p class="team-role" data-i18n="team4role">Comunidad y Familias</p>
+        <p class="team-bio" data-i18n="team4bio">Modera la comunidad Brazuka y acompaña a las familias durante todo el proceso.</p>
       </div>
     </div>
   </div>
@@ -756,7 +811,12 @@ footer{background:var(--ink);color:var(--text-muted-light);padding:60px 0 26px;}
 
 <script>
 const dict = {
-  es:{nav1:"Historias",nav1b:"Noticias",nav2:"Servicios",nav3:"Con el DT",nav4:"Comunidad",nav5:"Publicaciones",nav6:"Contacto",navcta:"Aplicar ahora",
+  es:{nav1:"Historias",nav1b:"Noticias",nav2:"Servicios",navteam:"Equipo",nav3:"Con el DT",nav4:"Comunidad",nav5:"Publicaciones",nav6:"Contacto",navcta:"Aplicar ahora",
+  teameyebrow:"Quiénes somos",teamtitle:"Equipo de trabajo",teamsub:"Los scouts, entrenadores y analistas que evalúan cada video y acompañan a los jugadores en su camino.",
+  team1role:"Fundador · Jefe de Scouting",team1bio:"Ex jugador profesional, lleva 12 años evaluando talento juvenil en Sudamérica.",
+  team2role:"Directora Técnica",team2bio:"Lidera el cuerpo técnico y el contenido de \"Con el DT\" para los jugadores en radar.",
+  team3role:"Analista de Video",team3bio:"Revisa cada envío y arma la ficha técnica que ven los clubes y agentes aliados.",
+  team4role:"Comunidad y Familias",team4bio:"Modera la comunidad Brazuka y acompaña a las familias durante todo el proceso.",
   verperfil:"Ver perfil completo →",
   newseyebrow:"Actualidad Brazuka",newstitle:"Noticias",newssub:"Lo último del proceso de scouting, pruebas, alianzas y resultados de nuestros jugadores.",
   news1date:"12 Jul 2026 · Destacado",news1title:"Tres jugadores de Brazuka fueron convocados a prueba con club de Segunda División",news1body:"Yuri, Mateus e Isabela viajan la próxima semana para una prueba de tres días con un club profesional aliado.",
@@ -799,7 +859,12 @@ const dict = {
   footcol1:"Explorar",footcol2:"Comunidad",footcol3:"Idioma",foottag:"Conectamos talento con oportunidad, desde Latinoamérica hacia el mundo.",
   footcopy:"© 2026 Brazuka Scout Fútbol. Mockup de diseño — no representa el sitio final."},
 
-  en:{nav1:"Stories",nav1b:"News",nav2:"Services",nav3:"With the Coach",nav4:"Community",nav5:"Posts",nav6:"Contact",navcta:"Apply now",
+  en:{nav1:"Stories",nav1b:"News",nav2:"Services",navteam:"Team",nav3:"With the Coach",nav4:"Community",nav5:"Posts",nav6:"Contact",navcta:"Apply now",
+  teameyebrow:"Who we are",teamtitle:"Our team",teamsub:"The scouts, coaches and analysts who review every video and support players along the way.",
+  team1role:"Founder · Head of Scouting",team1bio:"Former pro player, with 12 years evaluating youth talent across South America.",
+  team2role:"Technical Director",team2bio:"Leads the coaching staff and the \"With the Coach\" content for players on the radar.",
+  team3role:"Video Analyst",team3bio:"Reviews every submission and builds the technical sheet clubs and partner agents see.",
+  team4role:"Community & Families",team4bio:"Moderates the Brazuka community and supports families throughout the process.",
   verperfil:"See full profile →",
   newseyebrow:"Brazuka news",newstitle:"News",newssub:"The latest on our scouting process, trials, partnerships and player results.",
   news1date:"Jul 12, 2026 · Featured",news1title:"Three Brazuka players called up for a trial with a Second Division club",news1body:"Yuri, Mateus and Isabela travel next week for a three-day trial with a partner professional club.",
@@ -842,7 +907,12 @@ const dict = {
   footcol1:"Explore",footcol2:"Community",footcol3:"Language",foottag:"Connecting talent with opportunity, from Latin America to the world.",
   footcopy:"© 2026 Brazuka Scout Fútbol. Design mockup — not the final site."},
 
-  pt:{nav1:"Histórias",nav1b:"Notícias",nav2:"Serviços",nav3:"Com o Técnico",nav4:"Comunidade",nav5:"Publicações",nav6:"Contato",navcta:"Aplicar agora",
+  pt:{nav1:"Histórias",nav1b:"Notícias",nav2:"Serviços",navteam:"Equipe",nav3:"Com o Técnico",nav4:"Comunidade",nav5:"Publicações",nav6:"Contato",navcta:"Aplicar agora",
+  teameyebrow:"Quem somos",teamtitle:"Equipe de trabalho",teamsub:"Os olheiros, treinadores e analistas que avaliam cada vídeo e acompanham os jogadores em sua jornada.",
+  team1role:"Fundador · Chefe de Scouting",team1bio:"Ex-jogador profissional, com 12 anos avaliando talentos juvenis na América do Sul.",
+  team2role:"Diretora Técnica",team2bio:"Lidera a comissão técnica e o conteúdo de \"Com o Técnico\" para os jogadores no radar.",
+  team3role:"Analista de Vídeo",team3bio:"Revisa cada envio e monta a ficha técnica que clubes e agentes parceiros veem.",
+  team4role:"Comunidade e Famílias",team4bio:"Modera a comunidade Brazuka e acompanha as famílias durante todo o processo.",
   verperfil:"Ver perfil completo →",
   newseyebrow:"Novidades Brazuka",newstitle:"Notícias",newssub:"O mais recente do processo de scouting, testes, parcerias e resultados dos nossos jogadores.",
   news1date:"12 Jul 2026 · Destaque",news1title:"Três jogadores da Brazuka foram convocados para teste em clube da Segunda Divisão",news1body:"Yuri, Mateus e Isabela viajam na próxima semana para um teste de três dias com um clube profissional parceiro.",
