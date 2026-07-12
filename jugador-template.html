@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es" data-lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yuri Cardoso — Perfil de jugador · Brazuka Scout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#E1037D;--pink-light:#FF4FA8;--pink-dark:#9C0459;
+  --ink:#120A17;--ink-2:#1C1023;--ink-3:#261531;
+  --gold:#FFB627;--teal:#00D9A3;
+  --paper:#FBF7F5;--paper-2:#F1E8E7;
+  --text-dark:#1A0F1F;--text-muted-dark:#6B5D6F;
+  --text-light:#F6EEF3;--text-muted-light:#B8A3BE;
+  --display:'Anton',sans-serif;--body:'Inter',sans-serif;--mono:'Space Mono',monospace;
+  --maxw:1100px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--body);background:var(--paper);color:var(--text-dark);line-height:1.55;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.01em;text-transform:uppercase;}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;font-weight:700;color:var(--gold);}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(255,182,39,.2);}
+
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(18,10,23,.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;max-width:var(--maxw);margin:0 auto;}
+.back-link{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--text-light);display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.04em;}
+.logo-text{font-family:var(--display);font-size:17px;color:var(--text-light);text-transform:uppercase;}
+.logo-text span{color:var(--pink-light);}
+.cta-btn{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--pink);color:#fff;padding:10px 18px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;transition:.2s;}
+.cta-btn:hover{background:var(--pink-light);}
+
+/* profile hero */
+.pro-hero{
+  padding:150px 0 80px;color:var(--text-light);position:relative;overflow:hidden;
+  background:radial-gradient(ellipse 700px 460px at 85% 0%, rgba(225,3,125,.35), transparent 60%),var(--ink);
+}
+.pro-hero-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:end;position:relative;z-index:1;}
+.reticle{position:relative;}
+.reticle::before,.reticle::after,.reticle .rb,.reticle .rc{content:"";position:absolute;width:24px;height:24px;border:2.5px solid var(--pink);}
+.reticle::before{top:-7px;left:-7px;border-right:none;border-bottom:none;}
+.reticle::after{bottom:-7px;right:-7px;border-left:none;border-top:none;}
+.reticle .rb{top:-7px;right:-7px;border-left:none;border-bottom:none;}
+.reticle .rc{bottom:-7px;left:-7px;border-right:none;border-top:none;}
+.pro-photo{
+  height:400px;border-radius:16px;background:linear-gradient(160deg,var(--pink),var(--pink-dark) 55%,var(--ink) 130%);
+  display:flex;align-items:center;justify-content:center;position:relative;
+}
+.pro-photo .num{font-family:var(--display);font-size:150px;color:rgba(255,255,255,.2);}
+.status-row{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+.pill{font-family:var(--mono);font-size:10.5px;font-weight:700;padding:5px 11px;border-radius:99px;text-transform:uppercase;letter-spacing:.04em;}
+.pill.live{background:rgba(0,217,163,.14);color:var(--teal);display:flex;align-items:center;gap:6px;}
+.pill.live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 1.6s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.pill.id{background:rgba(255,255,255,.08);color:var(--text-muted-light);}
+.pro-name{font-size:clamp(38px,5.6vw,64px);line-height:.95;margin:14px 0 6px;}
+.pro-meta{font-family:var(--mono);font-size:13px;color:var(--text-muted-light);display:flex;gap:18px;flex-wrap:wrap;margin-bottom:26px;}
+.pro-meta b{color:#fff;}
+.pro-cta{display:flex;gap:12px;flex-wrap:wrap;}
+.cta-btn.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.35);}
+.cta-btn.ghost:hover{border-color:var(--gold);color:var(--gold);background:transparent;}
+
+/* stats */
+section{padding:70px 0;}
+.section-title{font-size:clamp(24px,3vw,34px);margin:8px 0 30px;}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 50px;}
+.stat-block span{font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--text-muted-dark);display:flex;justify-content:space-between;margin-bottom:8px;}
+.stat-block .track{height:7px;background:var(--paper-2);border-radius:99px;overflow:hidden;}
+.stat-block .fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--gold));border-radius:99px;}
+
+/* bio + video */
+.bio-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;}
+.bio-grid p{color:var(--text-muted-dark);font-size:15px;margin-bottom:14px;}
+.video-box{
+  aspect-ratio:16/9;border-radius:14px;background:linear-gradient(150deg,var(--ink-2),var(--ink));
+  display:flex;align-items:center;justify-content:center;color:var(--text-light);position:relative;overflow:hidden;
+}
+.video-box .play{width:60px;height:60px;border-radius:50%;background:var(--pink);display:flex;align-items:center;justify-content:center;}
+.video-box .play::after{content:"";border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px;}
+.video-note{font-family:var(--mono);font-size:11px;color:var(--text-muted-dark);margin-top:10px;text-align:center;}
+
+/* trayectoria */
+.dark{background:var(--ink);color:var(--text-light);}
+.dark .section-sub, .timeline p{color:var(--text-muted-light);}
+.timeline{display:flex;flex-direction:column;gap:0;margin-top:10px;}
+.t-item{display:flex;gap:20px;padding:20px 0;border-top:1px solid rgba(255,255,255,.08);}
+.t-item .tyear{font-family:var(--mono);font-size:13px;color:var(--gold);width:70px;flex-shrink:0;}
+.t-item h5{font-family:var(--display);font-size:16px;text-transform:uppercase;margin-bottom:4px;}
+.t-item p{font-size:13.5px;color:var(--text-muted-light);}
+
+/* gallery */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:10px;}
+.g-item{aspect-ratio:1;border-radius:10px;}
+
+/* admin note (visible only to admin in real product) */
+.admin-flag{
+  margin-top:50px;background:var(--paper-2);border-radius:12px;padding:16px 18px;font-size:12.5px;color:var(--text-muted-dark);
+  display:flex;gap:10px;
+}
+
+footer{background:var(--ink);color:var(--text-muted-light);padding:40px 0;text-align:center;font-size:12px;font-family:var(--mono);}
+
+@media(max-width:900px){
+  .pro-hero-grid,.bio-grid{grid-template-columns:1fr;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .gallery{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+  .wrap{padding:0 20px;}
+  section{padding:50px 0;}
+  .stats-grid{grid-template-columns:1fr;}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="index.html" class="back-link">← Volver a Historias</a>
+    <div class="logo-text">Brazuka<span>Scout</span></div>
+    <a href="index.html#contacto" class="cta-btn">Contactar sobre él</a>
+  </nav>
+</header>
+
+<section class="pro-hero">
+  <div class="wrap pro-hero-grid">
+    <div class="pro-photo reticle">
+      <span class="rb"></span><span class="rc"></span>
+      <span class="num">9</span>
+    </div>
+    <div>
+      <span class="eyebrow">Ficha de jugador · ID#BZ-0139</span>
+      <h1 class="pro-name">Yuri Cardoso</h1>
+      <div class="pro-meta">
+        <span>Posición: <b>Delantero</b></span>
+        <span>Edad: <b>19 años</b></span>
+        <span>Nacionalidad: <b>🇧🇷 Brasil</b></span>
+        <span>Ciudad base: <b>Medellín, CO</b></span>
+      </div>
+      <div class="status-row">
+        <span class="pill live">En radar</span>
+        <span class="pill id">Sub-19</span>
+        <span class="pill id">Pie hábil: derecho</span>
+      </div>
+      <div class="pro-cta" style="margin-top:24px;">
+        <a href="index.html#contacto" class="cta-btn">Solicitar información</a>
+        <a href="#video" class="cta-btn ghost">Ver video de presentación</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--pink);">Atributos</span>
+    <h2 class="section-title">Perfil técnico</h2>
+    <div class="stats-grid">
+      <div class="stat-block"><span>Velocidad <b>91</b></span><div class="track"><div class="fill" style="width:91%"></div></div></div>
+      <div class="stat-block"><span>Técnica <b>86</b></span><div class="track"><div class="fill" style="width:86%"></div></div></div>
+      <div class="stat-block"><span>Definición <b>83</b></span><div class="track"><div class="fill" style="width:83%"></div></div></div>
+      <div class="stat-block"><span>Pase <b>74</b></span><div class="track"><div class="fill" style="width:74%"></div></div></div>
+      <div class="stat-block"><span>Resistencia <b>80</b></span><div class="track"><div class="fill" style="width:80%"></div></div></div>
+      <div class="stat-block"><span>Juego aéreo <b>66</b></span><div class="track"><div class="fill" style="width:66%"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--paper-2);">
+  <div class="wrap bio-grid">
+    <div>
+      <span class="eyebrow" style="color:var(--pink);">Historia</span>
+      <h2 class="section-title">Sobre Yuri</h2>
+      <p>Empezó jugando fútbol callejero en Medellín antes de sumarse a las divisiones inferiores de un club local a los 14 años. Destaca por su velocidad en banda y su definición dentro del área.</p>
+      <p>Actualmente entrena de forma independiente mientras el equipo de Brazuka gestiona pruebas con clubes aliados en Colombia y Brasil.</p>
+    </div>
+    <div id="video">
+      <div class="video-box"><div class="play"></div></div>
+      <p class="video-note">Video de presentación — enlace cargado por el jugador, visible aquí tras aprobación del administrador.</p>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <span class="eyebrow">Trayectoria</span>
+    <h2 class="section-title">Camino recorrido</h2>
+    <div class="timeline">
+      <div class="t-item"><span class="tyear">2026</span><div><h5>Prueba con club de Segunda División</h5><p>Convocado junto a otros dos jugadores Brazuka para una prueba de tres días.</p></div></div>
+      <div class="t-item"><span class="tyear">2025</span><div><h5>Ingreso al radar Brazuka Scout</h5><p>Subió su primer video de presentación y fue aceptado en el proceso de scouting.</p></div></div>
+      <div class="t-item"><span class="tyear">2023</span><div><h5>Divisiones inferiores, club local</h5><p>Dos temporadas como titular en la categoría sub-17.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--pink);">Galería</span>
+    <h2 class="section-title">Momentos en cancha</h2>
+    <div class="gallery">
+      <div class="g-item" style="background:linear-gradient(150deg,var(--pink),var(--ink));"></div>
+      <div class="g-item" style="background:linear-gradient(150deg,var(--teal),var(--ink));"></div>
+      <div class="g-item" style="background:linear-gradient(150deg,var(--gold),var(--ink));"></div>
+      <div class="g-item" style="background:linear-gradient(150deg,var(--pink-dark),var(--ink));"></div>
+    </div>
+    <div class="admin-flag">🔒 Esta ficha completa es la vista pública. El administrador ve además datos de contacto directo del jugador/familia y el historial de solicitudes de clubes interesados.</div>
+  </div>
+</section>
+
+<footer>© 2026 Brazuka Scout Fútbol · Plantilla de perfil de jugador — mockup de diseño</footer>
+
+</body>
+</html>

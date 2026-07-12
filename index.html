@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="es" data-lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brazuka Scout Fútbol — Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#E1037D;
+  --pink-light:#FF4FA8;
+  --pink-dark:#9C0459;
+  --ink:#120A17;
+  --ink-2:#1C1023;
+  --ink-3:#261531;
+  --gold:#FFB627;
+  --teal:#00D9A3;
+  --paper:#FBF7F5;
+  --paper-2:#F1E8E7;
+  --text-dark:#1A0F1F;
+  --text-muted-dark:#6B5D6F;
+  --text-light:#F6EEF3;
+  --text-muted-light:#B8A3BE;
+  --radius:14px;
+  --maxw:1240px;
+  --display: 'Anton', sans-serif;
+  --body: 'Inter', sans-serif;
+  --mono: 'Space Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--body);
+  background:var(--paper);
+  color:var(--text-dark);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:700;
+}
+.eyebrow::before{
+  content:"";
+  width:7px;height:7px;border-radius:50%;
+  background:var(--pink);
+  box-shadow:0 0 0 3px rgba(225,3,125,.18);
+}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.01em;text-transform:uppercase;}
+.section-title{font-size:clamp(30px,4.4vw,52px);line-height:1.02;margin:10px 0 16px;}
+.section-sub{max-width:560px;color:var(--text-muted-dark);font-size:16px;}
+.dark .section-sub{color:var(--text-muted-light);}
+section{padding:100px 0;position:relative;}
+.dark{background:var(--ink);color:var(--text-light);}
+.dark .eyebrow{color:var(--gold);}
+.dark .eyebrow::before{background:var(--gold);box-shadow:0 0 0 3px rgba(255,182,39,.2);}
+
+/* ---------- viewfinder / scouting-frame signature ---------- */
+.reticle{position:relative;}
+.reticle::before,.reticle::after,.reticle .rb,.reticle .rc{
+  content:"";position:absolute;width:22px;height:22px;
+  border:2.5px solid var(--pink);opacity:.9;
+}
+.reticle::before{top:-6px;left:-6px;border-right:none;border-bottom:none;}
+.reticle::after{bottom:-6px;right:-6px;border-left:none;border-top:none;}
+.reticle .rb{top:-6px;right:-6px;border-left:none;border-bottom:none;}
+.reticle .rc{bottom:-6px;left:-6px;border-right:none;border-top:none;}
+
+/* ---------- nav ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(18,10,23,.78);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;max-width:var(--maxw);margin:0 auto;}
+.logo{display:flex;align-items:center;gap:10px;color:var(--text-light);}
+.logo-mark{
+  width:34px;height:34px;border-radius:8px;
+  background:linear-gradient(135deg,var(--pink),var(--pink-dark));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);color:#fff;font-size:16px;
+  transform:rotate(-4deg);
+}
+.logo-text{font-family:var(--display);font-size:19px;letter-spacing:.02em;text-transform:uppercase;}
+.logo-text span{color:var(--pink-light);}
+.nav-links{display:flex;gap:30px;list-style:none;}
+.nav-links a{
+  font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--text-muted-light);transition:color .2s;
+}
+.nav-links a:hover{color:var(--text-light);}
+.nav-right{display:flex;align-items:center;gap:18px;}
+.lang-switch{display:flex;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:3px;gap:2px;}
+.lang-switch button{
+  font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text-muted-light);
+  padding:6px 10px;border-radius:999px;transition:.2s;letter-spacing:.04em;
+}
+.lang-switch button.active{background:var(--pink);color:#fff;}
+.cta-btn{
+  font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  background:var(--pink);color:#fff;padding:11px 20px;border-radius:999px;
+  display:inline-flex;align-items:center;gap:8px;transition:transform .2s, background .2s;
+  white-space:nowrap;
+}
+.cta-btn:hover{background:var(--pink-light);transform:translateY(-2px);}
+.cta-btn.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.35);color:var(--text-light);}
+.cta-btn.ghost:hover{border-color:var(--gold);color:var(--gold);}
+.cta-btn.teal{background:var(--teal);color:var(--ink);}
+.cta-btn.teal:hover{background:#3FF0BD;}
+.burger{display:none;color:var(--text-light);font-size:22px;}
+.mobile-menu{
+  position:fixed;top:66px;left:0;right:0;bottom:0;background:var(--ink);z-index:99;
+  padding:30px 32px;transform:translateX(100%);transition:transform .3s ease;
+  display:flex;flex-direction:column;gap:4px;
+}
+.mobile-menu.open{transform:translateX(0);}
+.mobile-menu a{
+  font-family:var(--display);font-size:26px;text-transform:uppercase;color:var(--text-light);
+  padding:16px 0;border-bottom:1px solid rgba(255,255,255,.08);
+}
+.mobile-menu .cta-btn{margin-top:22px;text-align:center;justify-content:center;}
+
+/* ---------- hero ---------- */
+.hero{
+  padding:170px 0 110px;
+  background:
+    radial-gradient(ellipse 700px 460px at 82% 8%, rgba(225,3,125,.35), transparent 60%),
+    radial-gradient(ellipse 500px 400px at 10% 90%, rgba(0,217,163,.14), transparent 60%),
+    var(--ink);
+  color:var(--text-light);
+  position:relative;
+  overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size:46px 46px;
+  mask-image:radial-gradient(ellipse 700px 500px at 70% 20%, black, transparent);
+  pointer-events:none;
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;position:relative;z-index:2;}
+.hero h1{font-size:clamp(46px,6.2vw,84px);line-height:.94;margin:18px 0 22px;}
+.hero h1 em{font-style:normal;color:var(--pink-light);}
+.hero-sub{font-size:18px;color:var(--text-muted-light);max-width:480px;margin-bottom:34px;}
+.hero-cta{display:flex;gap:14px;margin-bottom:46px;flex-wrap:wrap;}
+.hero-stats{display:flex;gap:34px;}
+.hstat b{font-family:var(--display);font-size:28px;display:block;color:#fff;}
+.hstat span{font-family:var(--mono);font-size:11px;color:var(--text-muted-light);text-transform:uppercase;letter-spacing:.05em;}
+
+/* scouting card */
+.scout-card{
+  background:linear-gradient(165deg,var(--ink-3),var(--ink-2));
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:20px;padding:22px;max-width:340px;margin-left:auto;
+  box-shadow:0 30px 70px rgba(0,0,0,.5);
+}
+.scout-card .tag{
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;
+}
+.scout-card .tag .live{
+  font-family:var(--mono);font-size:10px;color:var(--teal);letter-spacing:.08em;
+  display:flex;align-items:center;gap:6px;font-weight:700;
+}
+.scout-card .tag .live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 1.6s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.scout-card .tag .id{font-family:var(--mono);font-size:10px;color:var(--text-muted-light);}
+.card-photo{
+  height:210px;border-radius:12px;margin:0 auto 16px;
+  background:linear-gradient(150deg,var(--pink) 0%,var(--pink-dark) 55%,var(--ink) 130%);
+  display:flex;align-items:center;justify-content:center;position:relative;
+}
+.card-photo .num{font-family:var(--display);font-size:88px;color:rgba(255,255,255,.22);}
+.card-name{font-family:var(--display);font-size:23px;color:#fff;letter-spacing:.02em;}
+.card-role{font-family:var(--mono);font-size:11px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.bar-row span{font-family:var(--mono);font-size:10px;color:var(--text-muted-light);width:64px;flex-shrink:0;text-transform:uppercase;}
+.bar-track{flex:1;height:5px;background:rgba(255,255,255,.09);border-radius:99px;overflow:hidden;}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--gold));border-radius:99px;}
+
+/* ---------- social strip ---------- */
+.social-strip{
+  background:var(--ink-2);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);
+  padding:20px 0;
+}
+.social-strip .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.social-strip p{font-family:var(--mono);font-size:12px;color:var(--text-muted-light);letter-spacing:.04em;}
+.social-icons{display:flex;gap:14px;}
+.social-icons a{
+  width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.14);
+  display:flex;align-items:center;justify-content:center;color:var(--text-light);transition:.2s;
+}
+.social-icons a:hover{background:var(--pink);border-color:var(--pink);transform:translateY(-2px);}
+.social-icons svg{width:17px;height:17px;}
+
+/* ---------- historias / carousel ---------- */
+.carousel-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;flex-wrap:wrap;gap:20px;}
+.carousel{display:flex;gap:22px;overflow-x:auto;padding-bottom:14px;scroll-snap-type:x mandatory;}
+.carousel::-webkit-scrollbar{height:6px;}
+.carousel::-webkit-scrollbar-thumb{background:var(--pink);border-radius:99px;}
+.player-card{
+  flex:0 0 250px;scroll-snap-align:start;background:#fff;border-radius:16px;
+  border:1px solid var(--paper-2);overflow:hidden;transition:transform .25s, box-shadow .25s;
+}
+.player-card:hover{transform:translateY(-6px);box-shadow:0 22px 40px rgba(26,15,31,.12);}
+.player-photo{
+  height:190px;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  margin:18px 18px 0;border-radius:12px;
+}
+.player-photo .num{font-family:var(--display);font-size:64px;color:rgba(255,255,255,.35);}
+.radar-badge{
+  position:absolute;top:-8px;left:-8px;background:var(--ink);color:var(--gold);
+  font-family:var(--mono);font-size:9px;font-weight:700;padding:4px 8px;border-radius:6px;
+  display:flex;align-items:center;gap:5px;letter-spacing:.04em;
+}
+.radar-badge::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--teal);animation:pulse 1.6s infinite;}
+.player-body{padding:16px 18px 20px;}
+.player-body h4{font-family:var(--display);font-size:19px;text-transform:uppercase;margin-bottom:2px;}
+.player-body .pos{font-family:var(--mono);font-size:11px;color:var(--pink);text-transform:uppercase;margin-bottom:10px;font-weight:700;}
+.player-body p{font-size:13.5px;color:var(--text-muted-dark);}
+.quote-mark{color:var(--pink);font-family:var(--display);font-size:20px;}
+.player-link{
+  display:inline-block;margin-top:12px;font-family:var(--mono);font-size:11px;font-weight:700;
+  color:var(--pink);text-transform:uppercase;letter-spacing:.04em;transition:.2s;
+}
+.player-link:hover{color:var(--pink-dark);}
+
+/* ---------- noticias (hero-style) ---------- */
+.news-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:26px;margin-top:44px;}
+.news-featured{
+  background:var(--ink);border-radius:20px;overflow:hidden;color:#fff;position:relative;min-height:420px;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:36px;
+}
+.news-featured .nf-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 500px 400px at 80% 0%, rgba(225,3,125,.5), transparent 60%),
+    linear-gradient(160deg,var(--ink-3),var(--ink));
+}
+.news-featured .nf-content{position:relative;z-index:1;}
+.news-date{font-family:var(--mono);font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;display:block;}
+.news-featured h3{font-family:var(--display);font-size:clamp(24px,2.6vw,34px);text-transform:uppercase;line-height:1.08;margin-bottom:12px;max-width:480px;}
+.news-featured p{color:var(--text-muted-light);font-size:14px;max-width:440px;margin-bottom:16px;}
+.news-list{display:flex;flex-direction:column;gap:1px;background:var(--paper-2);border-radius:16px;overflow:hidden;}
+.news-item{background:#fff;padding:22px 24px;display:flex;flex-direction:column;transition:background .2s;}
+.news-item:hover{background:var(--paper-2);}
+.news-item .news-date{color:var(--pink);}
+.news-item h4{font-family:var(--display);font-size:16.5px;text-transform:uppercase;line-height:1.2;}
+
+/* ---------- servicios ---------- */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);border-radius:18px;overflow:hidden;margin-top:44px;}
+.service-card{background:var(--ink-2);padding:34px 28px;}
+.service-card .sic{
+  width:46px;height:46px;border-radius:10px;background:rgba(225,3,125,.14);
+  display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--pink-light);
+}
+.service-card h4{font-family:var(--display);font-size:19px;margin-bottom:10px;text-transform:uppercase;}
+.service-card p{font-size:14px;color:var(--text-muted-light);}
+
+/* ---------- DT section ---------- */
+.dt-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;}
+.board{
+  background:#0F3D2E;border-radius:18px;padding:26px;position:relative;
+  box-shadow:0 26px 60px rgba(26,15,31,.18);
+  background-image:
+    linear-gradient(#12432f,#12432f),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 34px);
+}
+.board .dt-tag{font-family:var(--mono);font-size:11px;color:var(--gold);letter-spacing:.06em;margin-bottom:14px;display:block;}
+.board svg{width:100%;height:auto;}
+.dt-list{margin-top:30px;display:flex;flex-direction:column;gap:22px;}
+.dt-item{display:flex;gap:16px;}
+.dt-num{font-family:var(--mono);font-size:12px;color:var(--pink);border:1.5px solid var(--pink);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-weight:700;}
+.dt-item h5{font-family:var(--display);font-size:16px;text-transform:uppercase;margin-bottom:4px;}
+.dt-item p{font-size:14px;color:var(--text-muted-dark);}
+
+/* ---------- comunidad / red social ---------- */
+.community-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;margin-top:44px;}
+.feed{display:flex;flex-direction:column;gap:16px;}
+.post{
+  background:var(--ink-2);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:18px;
+  display:flex;gap:14px;
+}
+.post .avatar{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--pink),var(--gold));
+  display:flex;align-items:center;justify-content:center;font-family:var(--display);color:#fff;font-size:15px;
+}
+.post-body{flex:1;}
+.post-body .pname{font-weight:700;font-size:13.5px;color:#fff;}
+.post-body .ptime{font-family:var(--mono);font-size:10px;color:var(--text-muted-light);margin-left:8px;}
+.post-body p{font-size:13.5px;color:var(--text-muted-light);margin:6px 0 10px;}
+.post-media{height:100px;border-radius:8px;background:linear-gradient(120deg,rgba(225,3,125,.35),rgba(0,217,163,.2));}
+.status-pill{font-family:var(--mono);font-size:9.5px;font-weight:700;padding:4px 9px;border-radius:99px;letter-spacing:.04em;text-transform:uppercase;}
+.status-pill.pending{background:rgba(255,182,39,.16);color:var(--gold);}
+.status-pill.approved{background:rgba(0,217,163,.16);color:var(--teal);}
+
+.admin-panel{background:#fff;border-radius:16px;padding:24px;height:fit-content;color:var(--text-dark);}
+.admin-panel .aphead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.admin-panel .aphead h4{font-family:var(--display);font-size:17px;text-transform:uppercase;}
+.admin-panel .aphead span{font-family:var(--mono);font-size:11px;color:var(--pink);font-weight:700;}
+.mod-row{display:flex;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--paper-2);}
+.mod-row .avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--pink-dark));flex-shrink:0;}
+.mod-row .mtxt{flex:1;}
+.mod-row .mtxt b{font-size:13px;}
+.mod-row .mtxt p{font-size:11.5px;color:var(--text-muted-dark);}
+.mod-actions{display:flex;gap:6px;}
+.mod-actions button{width:28px;height:28px;border-radius:7px;font-size:13px;font-weight:700;}
+.mod-actions .ok{background:rgba(0,217,163,.14);color:#00A47F;}
+.mod-actions .no{background:rgba(225,3,125,.1);color:var(--pink);}
+.admin-note{
+  margin-top:16px;padding:12px 14px;background:var(--paper-2);border-radius:10px;
+  font-size:12px;color:var(--text-muted-dark);display:flex;gap:8px;
+}
+
+/* ---------- publicaciones / frases ---------- */
+.quote-banner{
+  margin:60px 0 -100px;background:linear-gradient(120deg,var(--pink),var(--pink-dark));
+  border-radius:22px;padding:52px 48px;color:#fff;position:relative;overflow:hidden;
+}
+.quote-banner::before{content:"”";position:absolute;font-family:var(--display);font-size:220px;opacity:.15;top:-60px;right:20px;}
+.quote-banner p{font-family:var(--display);font-size:clamp(22px,3.2vw,34px);text-transform:none;max-width:680px;line-height:1.15;position:relative;z-index:1;}
+.quote-banner span{display:block;margin-top:16px;font-family:var(--mono);font-size:12px;letter-spacing:.05em;opacity:.85;}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:140px;}
+.blog-card{border-radius:16px;overflow:hidden;border:1px solid var(--paper-2);background:#fff;}
+.blog-thumb{height:150px;}
+.blog-body{padding:20px;}
+.blog-body .btag{font-family:var(--mono);font-size:10px;color:var(--pink);font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
+.blog-body h4{font-family:var(--display);font-size:18px;margin:8px 0 6px;text-transform:uppercase;}
+.blog-body p{font-size:13px;color:var(--text-muted-dark);}
+
+/* ---------- contacto / formularios ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:44px;}
+.form-card{background:#fff;border-radius:18px;padding:30px;border:1px solid var(--paper-2);}
+.form-card h3{font-family:var(--display);font-size:21px;text-transform:uppercase;margin-bottom:6px;}
+.form-card .fnote{font-size:12.5px;color:var(--text-muted-dark);margin-bottom:22px;display:flex;gap:8px;align-items:flex-start;background:var(--paper-2);padding:10px 12px;border-radius:10px;}
+.field{margin-bottom:16px;}
+.field label{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-muted-dark);display:block;margin-bottom:6px;font-weight:700;}
+.field input,.field select,.field textarea{
+  width:100%;padding:11px 13px;border:1.5px solid var(--paper-2);border-radius:9px;
+  font-family:var(--body);font-size:13.5px;background:var(--paper);transition:border-color .2s;
+}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--pink);}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.upload-box{
+  border:1.5px dashed var(--pink);border-radius:10px;padding:16px;text-align:center;
+  font-size:12.5px;color:var(--pink-dark);background:rgba(225,3,125,.04);
+}
+.upload-box b{display:block;font-size:13px;margin-bottom:3px;color:var(--text-dark);}
+.submit-btn{
+  width:100%;background:var(--pink);color:#fff;padding:13px;border-radius:9px;
+  font-family:var(--mono);font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
+  margin-top:6px;transition:.2s;
+}
+.submit-btn:hover{background:var(--pink-dark);}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:var(--text-muted-light);padding:60px 0 26px;}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08);}
+.foot-grid h5{font-family:var(--mono);font-size:11px;color:#fff;text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px;}
+.foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px;font-size:13.5px;}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;font-size:12px;flex-wrap:wrap;gap:12px;}
+.foot-bottom .fs{font-family:var(--mono);}
+
+/* ---------- responsive ---------- */
+@media(max-width:940px){
+  .hero-grid,.dt-wrap,.community-grid,.contact-grid{grid-template-columns:1fr;}
+  .scout-card{margin:0 auto;}
+  .services-grid{grid-template-columns:1fr;}
+  .blog-grid{grid-template-columns:1fr;margin-top:200px;}
+  .foot-grid{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+  .burger{display:block;}
+  .nav-right .cta-btn{display:none;}
+}
+@media(max-width:600px){
+  .wrap{padding:0 20px;}
+  section{padding:70px 0;}
+  .field-row{grid-template-columns:1fr;}
+  .foot-grid{grid-template-columns:1fr;}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="logo">
+      <div class="logo-mark">B</div>
+      <div class="logo-text">Brazuka<span>Scout</span></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#historias" data-i18n="nav1">Historias</a></li>
+      <li><a href="#noticias" data-i18n="nav1b">Noticias</a></li>
+      <li><a href="#servicios" data-i18n="nav2">Servicios</a></li>
+      <li><a href="#dt" data-i18n="nav3">Con el DT</a></li>
+      <li><a href="#comunidad" data-i18n="nav4">Comunidad</a></li>
+      <li><a href="#blog" data-i18n="nav5">Publicaciones</a></li>
+      <li><a href="#contacto" data-i18n="nav6">Contacto</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button class="active" data-lang-btn="es">ES</button>
+        <button data-lang-btn="en">EN</button>
+        <button data-lang-btn="pt">PT</button>
+      </div>
+      <a href="#contacto" class="cta-btn" data-i18n="navcta">Aplicar ahora</a>
+      <button class="burger" id="burgerBtn" aria-label="Menú">☰</button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#historias" data-i18n="nav1">Historias</a>
+    <a href="#noticias" data-i18n="nav1b">Noticias</a>
+    <a href="#servicios" data-i18n="nav2">Servicios</a>
+    <a href="#dt" data-i18n="nav3">Con el DT</a>
+    <a href="#comunidad" data-i18n="nav4">Comunidad</a>
+    <a href="#blog" data-i18n="nav5">Publicaciones</a>
+    <a href="#contacto" data-i18n="nav6">Contacto</a>
+    <a href="#contacto" class="cta-btn" data-i18n="navcta">Aplicar ahora</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow" data-i18n="heroeyebrow">Scouting deportivo profesional</span>
+      <h1 data-i18n="herotitle">Del barrio<br>al radar <em>global</em></h1>
+      <p class="hero-sub" data-i18n="herosub">Conectamos jóvenes futbolistas con clubes, agentes y oportunidades reales. Aplica, sube tu video y entra al radar de Brazuka Scout.</p>
+      <div class="hero-cta">
+        <a href="#contacto" class="cta-btn" data-i18n="herocta1">Enviar mi video</a>
+        <a href="#historias" class="cta-btn ghost" data-i18n="herocta2">Ver jugadores</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><b>+320</b><span data-i18n="hstat1">Jugadores en radar</span></div>
+        <div class="hstat"><b>41</b><span data-i18n="hstat2">Clubes aliados</span></div>
+        <div class="hstat"><b>18</b><span data-i18n="hstat3">Países alcanzados</span></div>
+      </div>
+    </div>
+    <div class="scout-card reticle">
+      <span class="rb"></span><span class="rc"></span>
+      <div class="tag">
+        <span class="live" data-i18n="cardlive">En radar</span>
+        <span class="id">ID#BZ-0142</span>
+      </div>
+      <div class="card-photo"><span class="num">10</span></div>
+      <div class="card-name">Kaique Ferreira</div>
+      <div class="card-role" data-i18n="cardrole">Extremo derecho · 17 años</div>
+      <div class="bar-row"><span data-i18n="barvel">Velocidad</span><div class="bar-track"><div class="bar-fill" style="width:91%"></div></div></div>
+      <div class="bar-row"><span data-i18n="bartec">Técnica</span><div class="bar-track"><div class="bar-fill" style="width:86%"></div></div></div>
+      <div class="bar-row"><span data-i18n="bardef">Definición</span><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL STRIP -->
+<div class="social-strip">
+  <div class="wrap">
+    <p data-i18n="socialtxt">Seguí el proceso de nuestros jugadores en tiempo real →</p>
+    <div class="social-icons">
+      <a href="#" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+      <a href="#" aria-label="TikTok" title="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.6 2.4 2.4 4 5 4.2"/></svg></a>
+      <a href="#" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="M11 10l4 2-4 2z" fill="currentColor" stroke="none"/></svg></a>
+      <a href="#" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20l1.4-3.8A7.9 7.9 0 1 1 8.7 19L4 20z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- HISTORIAS -->
+<section id="historias">
+  <div class="wrap">
+    <div class="carousel-head">
+      <div>
+        <span class="eyebrow" data-i18n="histeyebrow">Ya están en el mercado</span>
+        <h2 class="section-title" data-i18n="histtitle">Historias que <br>empiezan acá</h2>
+      </div>
+      <p class="section-sub" data-i18n="histsub">Jugadores reales, con videos y estadísticas verificadas, listos para ser vistos por clubes y agentes.</p>
+    </div>
+    <div class="carousel">
+      <div class="player-card">
+        <div class="player-photo" style="background:linear-gradient(150deg,var(--pink),var(--ink))"><span class="radar-badge" data-i18n="radar">En radar</span><span class="num">9</span></div>
+        <div class="player-body"><h4>Yuri Cardoso</h4><p class="pos" data-i18n="pos1">Delantero · Sub-19</p><p><span class="quote-mark">“</span><span data-i18n="ptxt1">Empecé jugando en la calle, hoy entreno con la mira en Europa.</span></p><a href="jugador-template.html" class="player-link" data-i18n="verperfil">Ver perfil completo →</a></div>
+      </div>
+      <div class="player-card">
+        <div class="player-photo" style="background:linear-gradient(150deg,var(--teal),var(--ink))"><span class="radar-badge" data-i18n="radar">En radar</span><span class="num">4</span></div>
+        <div class="player-body"><h4>Mateus Rocha</h4><p class="pos" data-i18n="pos2">Defensa central · Sub-17</p><p><span class="quote-mark">“</span><span data-i18n="ptxt2">Brazuka me ayudó a que un club me viera de verdad, no solo un video más.</span></p><a href="jugador-template.html" class="player-link" data-i18n="verperfil">Ver perfil completo →</a></div>
+      </div>
+      <div class="player-card">
+        <div class="player-photo" style="background:linear-gradient(150deg,var(--gold),var(--ink))"><span class="radar-badge" data-i18n="radar">En radar</span><span class="num">7</span></div>
+        <div class="player-body"><h4>Isabela Reyes</h4><p class="pos" data-i18n="pos3">Volante · Sub-20</p><p><span class="quote-mark">“</span><span data-i18n="ptxt3">Nunca pensé que subir un video iba a abrirme la puerta de una prueba.</span></p><a href="jugador-template.html" class="player-link" data-i18n="verperfil">Ver perfil completo →</a></div>
+      </div>
+      <div class="player-card">
+        <div class="player-photo" style="background:linear-gradient(150deg,var(--pink-dark),var(--ink))"><span class="radar-badge" data-i18n="radar">En radar</span><span class="num">1</span></div>
+        <div class="player-body"><h4>Thiago Almeida</h4><p class="pos" data-i18n="pos4">Arquero · Sub-19</p><p><span class="quote-mark">“</span><span data-i18n="ptxt4">Los scouts vieron mis atajadas antes de conocerme en persona.</span></p><a href="jugador-template.html" class="player-link" data-i18n="verperfil">Ver perfil completo →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTICIAS -->
+<section id="noticias">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="newseyebrow">Actualidad Brazuka</span>
+    <h2 class="section-title" data-i18n="newstitle">Noticias</h2>
+    <p class="section-sub" data-i18n="newssub">Lo último del proceso de scouting, pruebas, alianzas y resultados de nuestros jugadores.</p>
+    <div class="news-grid">
+      <a href="#" class="news-featured">
+        <div class="nf-bg"></div>
+        <div class="nf-content">
+          <span class="news-date" data-i18n="news1date">12 Jul 2026 · Destacado</span>
+          <h3 data-i18n="news1title">Tres jugadores de Brazuka fueron convocados a prueba con club de Segunda División</h3>
+          <p data-i18n="news1body">Yuri, Mateus e Isabela viajan la próxima semana para una prueba de tres días con un club profesional aliado.</p>
+        </div>
+      </a>
+      <div class="news-list">
+        <a href="#" class="news-item">
+          <span class="news-date" data-i18n="news2date">08 Jul 2026</span>
+          <h4 data-i18n="news2title">Nueva alianza con academia juvenil en Medellín</h4>
+        </a>
+        <a href="#" class="news-item">
+          <span class="news-date" data-i18n="news3date">02 Jul 2026</span>
+          <h4 data-i18n="news3title">Thiago Almeida fue elegido mejor arquero del torneo sub-19</h4>
+        </a>
+        <a href="#" class="news-item">
+          <span class="news-date" data-i18n="news4date">25 Jun 2026</span>
+          <h4 data-i18n="news4title">Abrimos convocatoria de scouting para la zona cafetera</h4>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="dark" id="servicios">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="serveyebrow">Lo que hacemos</span>
+    <h2 class="section-title" data-i18n="servtitle">Servicios</h2>
+    <p class="section-sub" data-i18n="servsub">Acompañamos al jugador y a la familia en todo el camino, desde el primer video hasta la firma.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="sic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+        <h4 data-i18n="serv1t">Scouting y evaluación</h4>
+        <p data-i18n="serv1p">Análisis técnico en video de cada jugador antes de entrar al radar.</p>
+      </div>
+      <div class="service-card">
+        <div class="sic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h18M12 3v18"/></svg></div>
+        <h4 data-i18n="serv2t">Conexión con clubes</h4>
+        <p data-i18n="serv2p">Presentamos perfiles verificados directamente a academias y clubes aliados.</p>
+      </div>
+      <div class="service-card">
+        <div class="sic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg></div>
+        <h4 data-i18n="serv3t">Gestión de perfil</h4>
+        <p data-i18n="serv3p">Ficha, estadísticas y video actualizados para que cualquier scout te encuentre.</p>
+      </div>
+      <div class="service-card">
+        <div class="sic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div>
+        <h4 data-i18n="serv4t">Preparación mental</h4>
+        <p data-i18n="serv4p">Acompañamiento para pruebas, entrevistas y el salto a un club nuevo.</p>
+      </div>
+      <div class="service-card">
+        <div class="sic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M11 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8zM19 8v6M22 11h-6"/></svg></div>
+        <h4 data-i18n="serv5t">Asesoría a familias</h4>
+        <p data-i18n="serv5p">Explicamos cada paso del proceso para que la familia decida con tranquilidad.</p>
+      </div>
+      <div class="service-card">
+        <div class="sic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v4H4zM4 12h10v8H4zM17 12h3v8h-3z"/></svg></div>
+        <h4 data-i18n="serv6t">Comunidad Brazuka</h4>
+        <p data-i18n="serv6p">Acceso a la red social interna para compartir progreso y ganar visibilidad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CON EL DT -->
+<section id="dt">
+  <div class="wrap dt-wrap">
+    <div class="board">
+      <span class="dt-tag" data-i18n="dttag">Pizarra táctica</span>
+      <svg viewBox="0 0 320 200">
+        <rect x="4" y="4" width="312" height="192" rx="8" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="2"/>
+        <line x1="160" y1="4" x2="160" y2="196" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
+        <circle cx="160" cy="100" r="28" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
+        <rect x="4" y="55" width="42" height="90" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
+        <rect x="274" y="55" width="42" height="90" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/>
+        <circle cx="90" cy="60" r="8" fill="#FFB627"/><circle cx="90" cy="140" r="8" fill="#FFB627"/>
+        <circle cx="140" cy="100" r="8" fill="#FFB627"/><circle cx="200" cy="60" r="8" fill="#E1037D"/>
+        <circle cx="230" cy="140" r="8" fill="#E1037D"/>
+        <path d="M90 60 L140 100 L200 60" stroke="#fff" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
+      </svg>
+    </div>
+    <div>
+      <span class="eyebrow" data-i18n="dteyebrow">Con el DT</span>
+      <h2 class="section-title" data-i18n="dttitle">El fútbol <br>explicado bien</h2>
+      <p class="section-sub" data-i18n="dtsub" style="margin-bottom:8px;">Nuestro cuerpo técnico rompe en videos cortos los conceptos que todo jugador joven debería entender.</p>
+      <div class="dt-list">
+        <div class="dt-item"><div class="dt-num">1</div><div><h5 data-i18n="dt1t">Lectura de espacios</h5><p data-i18n="dt1p">Cómo moverte fuera del balón para generar opciones de pase.</p></div></div>
+        <div class="dt-item"><div class="dt-num">2</div><div><h5 data-i18n="dt2t">Presión coordinada</h5><p data-i18n="dt2p">Qué mira un scout cuando evalúa el trabajo sin balón de un jugador.</p></div></div>
+        <div class="dt-item"><div class="dt-num">3</div><div><h5 data-i18n="dt3t">Toma de decisiones</h5><p data-i18n="dt3p">Por qué la velocidad mental pesa tanto como la velocidad física.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMUNIDAD / RED SOCIAL -->
+<section class="dark" id="comunidad">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="comeyebrow">Red interna</span>
+    <h2 class="section-title" data-i18n="comtitle">Comunidad Brazuka</h2>
+    <p class="section-sub" data-i18n="comsub">Los jugadores publican su progreso; el equipo Brazuka decide qué se destaca en la página pública.</p>
+    <div class="community-grid">
+      <div class="feed">
+        <div class="post">
+          <div class="avatar">Y</div>
+          <div class="post-body">
+            <span class="pname">Yuri Cardoso</span><span class="ptime">· hace 2h</span>
+            <p data-i18n="post1">Subí el resumen de mi partido del sábado, 2 goles 🔥</p>
+            <div class="post-media"></div>
+            <div style="margin-top:10px;"><span class="status-pill approved" data-i18n="stapproved">Aprobado</span></div>
+          </div>
+        </div>
+        <div class="post">
+          <div class="avatar">M</div>
+          <div class="post-body">
+            <span class="pname">Mateus Rocha</span><span class="ptime">· hace 5h</span>
+            <p data-i18n="post2">Entrenamiento de hoy con el equipo sub-17.</p>
+            <div class="post-media"></div>
+            <div style="margin-top:10px;"><span class="status-pill pending" data-i18n="stpending">En revisión</span></div>
+          </div>
+        </div>
+        <div class="post">
+          <div class="avatar">I</div>
+          <div class="post-body">
+            <span class="pname">Isabela Reyes</span><span class="ptime">· hace 1d</span>
+            <p data-i18n="post3">Gracias a todo el equipo por el apoyo en la prueba de ayer 🙏</p>
+            <div style="margin-top:10px;"><span class="status-pill approved" data-i18n="stapproved">Aprobado</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="admin-panel">
+        <div class="aphead"><h4 data-i18n="admtitle">Panel del administrador</h4><span data-i18n="admpending">3 pendientes</span></div>
+        <div class="mod-row">
+          <div class="avatar"></div>
+          <div class="mtxt"><b>Mateus Rocha</b><p data-i18n="modrow1">Entrenamiento sub-17 · video 0:42</p></div>
+          <div class="mod-actions"><button class="ok">✓</button><button class="no">✕</button></div>
+        </div>
+        <div class="mod-row">
+          <div class="avatar"></div>
+          <div class="mtxt"><b>Thiago Almeida</b><p data-i18n="modrow2">Atajada destacada · foto</p></div>
+          <div class="mod-actions"><button class="ok">✓</button><button class="no">✕</button></div>
+        </div>
+        <div class="mod-row">
+          <div class="avatar"></div>
+          <div class="mtxt"><b>Kaique Ferreira</b><p data-i18n="modrow3">Gol de tiro libre · video 0:18</p></div>
+          <div class="mod-actions"><button class="ok">✓</button><button class="no">✕</button></div>
+        </div>
+        <div class="admin-note" data-i18n="admnote">Solo las publicaciones aprobadas aquí aparecen en la sección pública del sitio.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICACIONES + FRASES -->
+<section id="blog">
+  <div class="wrap">
+    <div class="quote-banner">
+      <p data-i18n="quote1">"El talento te abre la puerta. La constancia decide si te quedas."</p>
+      <span data-i18n="quoteauthor">— Equipo Brazuka Scout</span>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,var(--pink),var(--ink))"></div>
+        <div class="blog-body"><span class="btag" data-i18n="btag1">Consejos</span><h4 data-i18n="btitle1">5 errores al grabar tu video de presentación</h4><p data-i18n="bbody1">Lo que todo scout necesita ver en los primeros 20 segundos.</p></div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,var(--teal),var(--ink))"></div>
+        <div class="blog-body"><span class="btag" data-i18n="btag2">Historias</span><h4 data-i18n="btitle2">De sub-15 a prueba profesional en 8 meses</h4><p data-i18n="bbody2">El camino de Mateus, contado por su propio entrenador.</p></div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb" style="background:linear-gradient(135deg,var(--gold),var(--ink))"></div>
+        <div class="blog-body"><span class="btag" data-i18n="btag3">Motivación</span><h4 data-i18n="btitle3">Frases que repiten nuestros DTs antes de cada prueba</h4><p data-i18n="bbody3">Una selección para leer antes de tu próxima oportunidad.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="dark" id="contacto">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="conteyebrow">Hablemos</span>
+    <h2 class="section-title" data-i18n="conttitle">Contacto y aplicación</h2>
+    <p class="section-sub" data-i18n="contsub">Escribinos o aplicá directamente como jugador — ambos formularios llegan a nuestro equipo de scouting.</p>
+    <div class="contact-grid">
+      <div class="form-card">
+        <h3 data-i18n="form1title">Contáctenos</h3>
+        <div class="fnote">✉️ <span data-i18n="form1note">Al enviar este formulario recibirás un correo automático de bienvenida con los próximos pasos.</span></div>
+        <div class="field"><label data-i18n="lblname">Nombre completo</label><input type="text" placeholder="Ej: Carlos Méndez"></div>
+        <div class="field"><label data-i18n="lblemail">Correo electrónico</label><input type="email" placeholder="tucorreo@email.com"></div>
+        <div class="field"><label data-i18n="lblmsg">Mensaje</label><textarea rows="3" placeholder="¿En qué te podemos ayudar?"></textarea></div>
+        <button class="submit-btn" data-i18n="btnsend">Enviar mensaje</button>
+      </div>
+      <div class="form-card">
+        <h3 data-i18n="form2title">Aplicación de jugador</h3>
+        <div class="fnote">🎯 <span data-i18n="form2note">Estos datos y tu video son revisados por el equipo de scouting antes de entrar al radar.</span></div>
+        <div class="field-row">
+          <div class="field"><label data-i18n="lblname">Nombre completo</label><input type="text"></div>
+          <div class="field"><label data-i18n="lblage">Edad</label><input type="number"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label data-i18n="lblpos">Posición</label><select><option data-i18n="opt1">Delantero</option><option data-i18n="opt2">Mediocampista</option><option data-i18n="opt3">Defensa</option><option data-i18n="opt4">Arquero</option></select></div>
+          <div class="field"><label data-i18n="lblcountry">País / ciudad</label><input type="text"></div>
+        </div>
+        <div class="field"><label data-i18n="lblvideo">Enlace del video de presentación</label><div class="upload-box"><b data-i18n="uplbold">Pegá el enlace de tu video</b><span data-i18n="uplsub">YouTube, Drive o Instagram — visible solo para el administrador</span></div></div>
+        <button class="submit-btn" data-i18n="btnapply">Enviar aplicación</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="margin-bottom:14px;"><div class="logo-mark">B</div><div class="logo-text" style="color:#fff;">Brazuka<span>Scout</span></div></div>
+        <p style="font-size:13px;max-width:260px;" data-i18n="foottag">Conectamos talento con oportunidad, desde Latinoamérica hacia el mundo.</p>
+        <div class="social-icons" style="margin-top:18px;">
+          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 4v9.5a3.5 3.5 0 1 1-3-3.46"/></svg></a>
+          <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="4"/></svg></a>
+        </div>
+      </div>
+      <div><h5 data-i18n="footcol1">Explorar</h5><ul><li><a href="#historias" data-i18n="nav1">Historias</a></li><li><a href="#servicios" data-i18n="nav2">Servicios</a></li><li><a href="#dt" data-i18n="nav3">Con el DT</a></li></ul></div>
+      <div><h5 data-i18n="footcol2">Comunidad</h5><ul><li><a href="#comunidad" data-i18n="nav4">Comunidad</a></li><li><a href="#blog" data-i18n="nav5">Publicaciones</a></li><li><a href="#contacto" data-i18n="nav6">Contacto</a></li></ul></div>
+      <div><h5 data-i18n="footcol3">Idioma</h5><ul style="flex-direction:row;gap:10px;"><li>🇪🇸 ES</li><li>🇺🇸 EN</li><li>🇧🇷 PT</li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="footcopy">© 2026 Brazuka Scout Fútbol. Mockup de diseño — no representa el sitio final.</span>
+      <span class="fs">brazukascout.com</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const dict = {
+  es:{nav1:"Historias",nav1b:"Noticias",nav2:"Servicios",nav3:"Con el DT",nav4:"Comunidad",nav5:"Publicaciones",nav6:"Contacto",navcta:"Aplicar ahora",
+  verperfil:"Ver perfil completo →",
+  newseyebrow:"Actualidad Brazuka",newstitle:"Noticias",newssub:"Lo último del proceso de scouting, pruebas, alianzas y resultados de nuestros jugadores.",
+  news1date:"12 Jul 2026 · Destacado",news1title:"Tres jugadores de Brazuka fueron convocados a prueba con club de Segunda División",news1body:"Yuri, Mateus e Isabela viajan la próxima semana para una prueba de tres días con un club profesional aliado.",
+  news2date:"08 Jul 2026",news2title:"Nueva alianza con academia juvenil en Medellín",
+  news3date:"02 Jul 2026",news3title:"Thiago Almeida fue elegido mejor arquero del torneo sub-19",
+  news4date:"25 Jun 2026",news4title:"Abrimos convocatoria de scouting para la zona cafetera",
+  heroeyebrow:"Scouting deportivo profesional",herotitle:"Del barrio<br>al radar <em>global</em>",herosub:"Conectamos jóvenes futbolistas con clubes, agentes y oportunidades reales. Aplica, sube tu video y entra al radar de Brazuka Scout.",
+  herocta1:"Enviar mi video",herocta2:"Ver jugadores",hstat1:"Jugadores en radar",hstat2:"Clubes aliados",hstat3:"Países alcanzados",
+  cardlive:"En radar",cardrole:"Extremo derecho · 17 años",barvel:"Velocidad",bartec:"Técnica",bardef:"Definición",
+  socialtxt:"Seguí el proceso de nuestros jugadores en tiempo real →",
+  histeyebrow:"Ya están en el mercado",histtitle:"Historias que <br>empiezan acá",histsub:"Jugadores reales, con videos y estadísticas verificadas, listos para ser vistos por clubes y agentes.",
+  radar:"En radar",pos1:"Delantero · Sub-19",pos2:"Defensa central · Sub-17",pos3:"Volante · Sub-20",pos4:"Arquero · Sub-19",
+  ptxt1:"Empecé jugando en la calle, hoy entreno con la mira en Europa.",ptxt2:"Brazuka me ayudó a que un club me viera de verdad, no solo un video más.",ptxt3:"Nunca pensé que subir un video iba a abrirme la puerta de una prueba.",ptxt4:"Los scouts vieron mis atajadas antes de conocerme en persona.",
+  serveyebrow:"Lo que hacemos",servtitle:"Servicios",servsub:"Acompañamos al jugador y a la familia en todo el camino, desde el primer video hasta la firma.",
+  serv1t:"Scouting y evaluación",serv1p:"Análisis técnico en video de cada jugador antes de entrar al radar.",
+  serv2t:"Conexión con clubes",serv2p:"Presentamos perfiles verificados directamente a academias y clubes aliados.",
+  serv3t:"Gestión de perfil",serv3p:"Ficha, estadísticas y video actualizados para que cualquier scout te encuentre.",
+  serv4t:"Preparación mental",serv4p:"Acompañamiento para pruebas, entrevistas y el salto a un club nuevo.",
+  serv5t:"Asesoría a familias",serv5p:"Explicamos cada paso del proceso para que la familia decida con tranquilidad.",
+  serv6t:"Comunidad Brazuka",serv6p:"Acceso a la red social interna para compartir progreso y ganar visibilidad.",
+  dttag:"Pizarra táctica",dteyebrow:"Con el DT",dttitle:"El fútbol <br>explicado bien",dtsub:"Nuestro cuerpo técnico rompe en videos cortos los conceptos que todo jugador joven debería entender.",
+  dt1t:"Lectura de espacios",dt1p:"Cómo moverte fuera del balón para generar opciones de pase.",
+  dt2t:"Presión coordinada",dt2p:"Qué mira un scout cuando evalúa el trabajo sin balón de un jugador.",
+  dt3t:"Toma de decisiones",dt3p:"Por qué la velocidad mental pesa tanto como la velocidad física.",
+  comeyebrow:"Red interna",comtitle:"Comunidad Brazuka",comsub:"Los jugadores publican su progreso; el equipo Brazuka decide qué se destaca en la página pública.",
+  post1:"Subí el resumen de mi partido del sábado, 2 goles 🔥",post2:"Entrenamiento de hoy con el equipo sub-17.",post3:"Gracias a todo el equipo por el apoyo en la prueba de ayer 🙏",
+  stapproved:"Aprobado",stpending:"En revisión",admtitle:"Panel del administrador",admpending:"3 pendientes",
+  modrow1:"Entrenamiento sub-17 · video 0:42",modrow2:"Atajada destacada · foto",modrow3:"Gol de tiro libre · video 0:18",
+  admnote:"Solo las publicaciones aprobadas aquí aparecen en la sección pública del sitio.",
+  quote1:"“El talento te abre la puerta. La constancia decide si te quedas.”",quoteauthor:"— Equipo Brazuka Scout",
+  btag1:"Consejos",btitle1:"5 errores al grabar tu video de presentación",bbody1:"Lo que todo scout necesita ver en los primeros 20 segundos.",
+  btag2:"Historias",btitle2:"De sub-15 a prueba profesional en 8 meses",bbody2:"El camino de Mateus, contado por su propio entrenador.",
+  btag3:"Motivación",btitle3:"Frases que repiten nuestros DTs antes de cada prueba",bbody3:"Una selección para leer antes de tu próxima oportunidad.",
+  conteyebrow:"Hablemos",conttitle:"Contacto y aplicación",contsub:"Escribinos o aplicá directamente como jugador — ambos formularios llegan a nuestro equipo de scouting.",
+  form1title:"Contáctenos",form1note:"Al enviar este formulario recibirás un correo automático de bienvenida con los próximos pasos.",
+  lblname:"Nombre completo",lblemail:"Correo electrónico",lblmsg:"Mensaje",btnsend:"Enviar mensaje",
+  form2title:"Aplicación de jugador",form2note:"Estos datos y tu video son revisados por el equipo de scouting antes de entrar al radar.",
+  lblage:"Edad",lblpos:"Posición",lblcountry:"País / ciudad",opt1:"Delantero",opt2:"Mediocampista",opt3:"Defensa",opt4:"Arquero",
+  lblvideo:"Enlace del video de presentación",uplbold:"Pegá el enlace de tu video",uplsub:"YouTube, Drive o Instagram — visible solo para el administrador",btnapply:"Enviar aplicación",
+  footcol1:"Explorar",footcol2:"Comunidad",footcol3:"Idioma",foottag:"Conectamos talento con oportunidad, desde Latinoamérica hacia el mundo.",
+  footcopy:"© 2026 Brazuka Scout Fútbol. Mockup de diseño — no representa el sitio final."},
+
+  en:{nav1:"Stories",nav1b:"News",nav2:"Services",nav3:"With the Coach",nav4:"Community",nav5:"Posts",nav6:"Contact",navcta:"Apply now",
+  verperfil:"See full profile →",
+  newseyebrow:"Brazuka news",newstitle:"News",newssub:"The latest on our scouting process, trials, partnerships and player results.",
+  news1date:"Jul 12, 2026 · Featured",news1title:"Three Brazuka players called up for a trial with a Second Division club",news1body:"Yuri, Mateus and Isabela travel next week for a three-day trial with a partner professional club.",
+  news2date:"Jul 08, 2026",news2title:"New partnership with a youth academy in Medellín",
+  news3date:"Jul 02, 2026",news3title:"Thiago Almeida named best goalkeeper of the U-19 tournament",
+  news4date:"Jun 25, 2026",news4title:"We opened scouting applications for the coffee region",
+  heroeyebrow:"Professional football scouting",herotitle:"From the street<br>to the <em>global</em> radar",herosub:"We connect young footballers with clubs, agents and real opportunities. Apply, upload your video and get on the Brazuka Scout radar.",
+  herocta1:"Send my video",herocta2:"See players",hstat1:"Players on radar",hstat2:"Partner clubs",hstat3:"Countries reached",
+  cardlive:"On radar",cardrole:"Right winger · 17 years",barvel:"Speed",bartec:"Technique",bardef:"Finishing",
+  socialtxt:"Follow our players' journey in real time →",
+  histeyebrow:"Already in the market",histtitle:"Stories that <br>start here",histsub:"Real players, with verified videos and stats, ready to be seen by clubs and agents.",
+  radar:"On radar",pos1:"Forward · U-19",pos2:"Center back · U-17",pos3:"Midfielder · U-20",pos4:"Goalkeeper · U-19",
+  ptxt1:"I started playing on the street, today I train with Europe in mind.",ptxt2:"Brazuka got me really seen by a club, not just another video.",ptxt3:"I never thought uploading a video would open the door to a trial.",ptxt4:"Scouts saw my saves before they ever met me.",
+  serveyebrow:"What we do",servtitle:"Services",servsub:"We support players and families through the whole journey, from the first video to signing.",
+  serv1t:"Scouting & evaluation",serv1p:"Technical video analysis of every player before joining the radar.",
+  serv2t:"Club connections",serv2p:"We present verified profiles directly to partner academies and clubs.",
+  serv3t:"Profile management",serv3p:"Updated stats, sheet and video so any scout can find you.",
+  serv4t:"Mental preparation",serv4p:"Support for trials, interviews and the jump to a new club.",
+  serv5t:"Family guidance",serv5p:"We explain every step so the family can decide with confidence.",
+  serv6t:"Brazuka community",serv6p:"Access to the internal social network to share progress and gain visibility.",
+  dttag:"Tactics board",dteyebrow:"With the coach",dttitle:"Football,<br>explained right",dtsub:"Our coaching staff breaks down, in short videos, the concepts every young player should understand.",
+  dt1t:"Reading space",dt1p:"How to move off the ball to create passing options.",
+  dt2t:"Coordinated pressing",dt2p:"What a scout looks at when evaluating a player's off-ball work.",
+  dt3t:"Decision making",dt3p:"Why mental speed matters as much as physical speed.",
+  comeyebrow:"Internal network",comtitle:"Brazuka community",comsub:"Players post their progress; the Brazuka team decides what gets featured on the public page.",
+  post1:"Uploaded my highlights from Saturday's match, 2 goals 🔥",post2:"Today's training with the U-17 squad.",post3:"Thanks to the whole team for the support at yesterday's trial 🙏",
+  stapproved:"Approved",stpending:"Under review",admtitle:"Admin panel",admpending:"3 pending",
+  modrow1:"U-17 training · video 0:42",modrow2:"Featured save · photo",modrow3:"Free kick goal · video 0:18",
+  admnote:"Only posts approved here appear in the public section of the site.",
+  quote1:"“Talent opens the door. Consistency decides if you stay.”",quoteauthor:"— Brazuka Scout Team",
+  btag1:"Tips",btitle1:"5 mistakes when filming your presentation video",bbody1:"What every scout needs to see in the first 20 seconds.",
+  btag2:"Stories",btitle2:"From U-15 to a pro trial in 8 months",bbody2:"Mateus' journey, told by his own coach.",
+  btag3:"Motivation",btitle3:"Phrases our coaches repeat before every trial",bbody3:"A selection to read before your next opportunity.",
+  conteyebrow:"Let's talk",conttitle:"Contact & application",contsub:"Write to us or apply directly as a player — both forms reach our scouting team.",
+  form1title:"Contact us",form1note:"After submitting you'll get an automatic welcome email with the next steps.",
+  lblname:"Full name",lblemail:"Email",lblmsg:"Message",btnsend:"Send message",
+  form2title:"Player application",form2note:"This data and your video are reviewed by our scouting team before joining the radar.",
+  lblage:"Age",lblpos:"Position",lblcountry:"Country / city",opt1:"Forward",opt2:"Midfielder",opt3:"Defender",opt4:"Goalkeeper",
+  lblvideo:"Presentation video link",uplbold:"Paste your video link",uplsub:"YouTube, Drive or Instagram — visible only to the admin",btnapply:"Submit application",
+  footcol1:"Explore",footcol2:"Community",footcol3:"Language",foottag:"Connecting talent with opportunity, from Latin America to the world.",
+  footcopy:"© 2026 Brazuka Scout Fútbol. Design mockup — not the final site."},
+
+  pt:{nav1:"Histórias",nav1b:"Notícias",nav2:"Serviços",nav3:"Com o Técnico",nav4:"Comunidade",nav5:"Publicações",nav6:"Contato",navcta:"Aplicar agora",
+  verperfil:"Ver perfil completo →",
+  newseyebrow:"Novidades Brazuka",newstitle:"Notícias",newssub:"O mais recente do processo de scouting, testes, parcerias e resultados dos nossos jogadores.",
+  news1date:"12 Jul 2026 · Destaque",news1title:"Três jogadores da Brazuka foram convocados para teste em clube da Segunda Divisão",news1body:"Yuri, Mateus e Isabela viajam na próxima semana para um teste de três dias com um clube profissional parceiro.",
+  news2date:"08 Jul 2026",news2title:"Nova parceria com academia juvenil em Medellín",
+  news3date:"02 Jul 2026",news3title:"Thiago Almeida foi eleito melhor goleiro do torneio sub-19",
+  news4date:"25 Jun 2026",news4title:"Abrimos convocatória de scouting para a região cafeeira",
+  heroeyebrow:"Scouting esportivo profissional",herotitle:"Da rua<br>ao radar <em>global</em>",herosub:"Conectamos jovens jogadores com clubes, agentes e oportunidades reais. Aplique, envie seu vídeo e entre no radar da Brazuka Scout.",
+  herocta1:"Enviar meu vídeo",herocta2:"Ver jogadores",hstat1:"Jogadores no radar",hstat2:"Clubes parceiros",hstat3:"Países alcançados",
+  cardlive:"No radar",cardrole:"Ponta direita · 17 anos",barvel:"Velocidade",bartec:"Técnica",bardef:"Finalização",
+  socialtxt:"Acompanhe a jornada dos nossos jogadores em tempo real →",
+  histeyebrow:"Já estão no mercado",histtitle:"Histórias que <br>começam aqui",histsub:"Jogadores reais, com vídeos e estatísticas verificadas, prontos para serem vistos por clubes e agentes.",
+  radar:"No radar",pos1:"Atacante · Sub-19",pos2:"Zagueiro · Sub-17",pos3:"Meio-campo · Sub-20",pos4:"Goleiro · Sub-19",
+  ptxt1:"Comecei jogando na rua, hoje treino de olho na Europa.",ptxt2:"A Brazuka fez um clube me ver de verdade, não só mais um vídeo.",ptxt3:"Nunca pensei que enviar um vídeo abriria a porta de um teste.",ptxt4:"Os olheiros viram minhas defesas antes de me conhecerem.",
+  serveyebrow:"O que fazemos",servtitle:"Serviços",servsub:"Acompanhamos o jogador e a família em toda a jornada, do primeiro vídeo até a assinatura.",
+  serv1t:"Scouting e avaliação",serv1p:"Análise técnica em vídeo de cada jogador antes de entrar no radar.",
+  serv2t:"Conexão com clubes",serv2p:"Apresentamos perfis verificados diretamente a academias e clubes parceiros.",
+  serv3t:"Gestão de perfil",serv3p:"Ficha, estatísticas e vídeo atualizados para qualquer olheiro te encontrar.",
+  serv4t:"Preparação mental",serv4p:"Acompanhamento para testes, entrevistas e a mudança para um novo clube.",
+  serv5t:"Assessoria às famílias",serv5p:"Explicamos cada etapa do processo para a família decidir com tranquilidade.",
+  serv6t:"Comunidade Brazuka",serv6p:"Acesso à rede social interna para compartilhar progresso e ganhar visibilidade.",
+  dttag:"Quadro tático",dteyebrow:"Com o técnico",dttitle:"Futebol,<br>bem explicado",dtsub:"Nossa comissão técnica explica, em vídeos curtos, os conceitos que todo jogador jovem deveria entender.",
+  dt1t:"Leitura de espaços",dt1p:"Como se movimentar sem a bola para criar opções de passe.",
+  dt2t:"Pressão coordenada",dt2p:"O que um olheiro observa ao avaliar o trabalho sem bola de um jogador.",
+  dt3t:"Tomada de decisão",dt3p:"Por que a velocidade mental pesa tanto quanto a velocidade física.",
+  comeyebrow:"Rede interna",comtitle:"Comunidade Brazuka",comsub:"Os jogadores publicam seu progresso; a equipe Brazuka decide o que aparece na página pública.",
+  post1:"Postei os melhores momentos do jogo de sábado, 2 gols 🔥",post2:"Treino de hoje com o time sub-17.",post3:"Obrigado a toda a equipe pelo apoio no teste de ontem 🙏",
+  stapproved:"Aprovado",stpending:"Em análise",admtitle:"Painel do administrador",admpending:"3 pendentes",
+  modrow1:"Treino sub-17 · vídeo 0:42",modrow2:"Defesa em destaque · foto",modrow3:"Gol de falta · vídeo 0:18",
+  admnote:"Somente as publicações aprovadas aqui aparecem na seção pública do site.",
+  quote1:"“O talento abre a porta. A constância decide se você fica.”",quoteauthor:"— Equipe Brazuka Scout",
+  btag1:"Dicas",btitle1:"5 erros ao gravar seu vídeo de apresentação",bbody1:"O que todo olheiro precisa ver nos primeiros 20 segundos.",
+  btag2:"Histórias",btitle2:"De sub-15 a teste profissional em 8 meses",bbody2:"A jornada de Mateus, contada pelo próprio treinador.",
+  btag3:"Motivação",btitle3:"Frases que nossos técnicos repetem antes de cada teste",bbody3:"Uma seleção para ler antes da sua próxima oportunidade.",
+  conteyebrow:"Vamos conversar",conttitle:"Contato e aplicação",contsub:"Escreva para nós ou aplique diretamente como jogador — ambos os formulários chegam à nossa equipe de scouting.",
+  form1title:"Fale conosco",form1note:"Ao enviar este formulário você receberá um e-mail automático de boas-vindas com os próximos passos.",
+  lblname:"Nome completo",lblemail:"E-mail",lblmsg:"Mensagem",btnsend:"Enviar mensagem",
+  form2title:"Aplicação de jogador",form2note:"Esses dados e seu vídeo são revisados pela equipe de scouting antes de entrar no radar.",
+  lblage:"Idade",lblpos:"Posição",lblcountry:"País / cidade",opt1:"Atacante",opt2:"Meio-campo",opt3:"Zagueiro",opt4:"Goleiro",
+  lblvideo:"Link do vídeo de apresentação",uplbold:"Cole o link do seu vídeo",uplsub:"YouTube, Drive ou Instagram — visível apenas para o administrador",btnapply:"Enviar aplicação",
+  footcol1:"Explorar",footcol2:"Comunidade",footcol3:"Idioma",foottag:"Conectando talento com oportunidade, da América Latina para o mundo.",
+  footcopy:"© 2026 Brazuka Scout Fútbol. Mockup de design — não representa o site final."}
+};
+
+function setLang(lang){
+  document.documentElement.setAttribute('data-lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[lang] && dict[lang][key]!==undefined){ el.innerHTML = dict[lang][key]; }
+  });
+  document.querySelectorAll('[data-lang-btn]').forEach(b=>{
+    b.classList.toggle('active', b.getAttribute('data-lang-btn')===lang);
+  });
+}
+document.querySelectorAll('[data-lang-btn]').forEach(btn=>{
+  btn.addEventListener('click', ()=> setLang(btn.getAttribute('data-lang-btn')));
+});
+
+const burgerBtn = document.getElementById('burgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+burgerBtn.addEventListener('click', ()=>{
+  mobileMenu.classList.toggle('open');
+  burgerBtn.textContent = mobileMenu.classList.contains('open') ? '✕' : '☰';
+});
+mobileMenu.querySelectorAll('a').forEach(a=>{
+  a.addEventListener('click', ()=>{
+    mobileMenu.classList.remove('open');
+    burgerBtn.textContent = '☰';
+  });
+});
+
+// mock moderation interactions
+document.querySelectorAll('.mod-actions .ok, .mod-actions .no').forEach(btn=>{
+  btn.addEventListener('click', (e)=>{
+    const row = e.target.closest('.mod-row');
+    row.style.transition='opacity .3s, transform .3s';
+    row.style.opacity='0'; row.style.transform='translateX(12px)';
+    setTimeout(()=> row.remove(), 300);
+  });
+});
+
+// mock form submit
+document.querySelectorAll('.submit-btn').forEach(btn=>{
+  btn.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const original = btn.textContent;
+    btn.textContent = document.documentElement.getAttribute('data-lang')==='en' ? 'Sent ✓' : document.documentElement.getAttribute('data-lang')==='pt' ? 'Enviado ✓' : 'Enviado ✓';
+    btn.style.background = 'var(--teal)';
+    setTimeout(()=>{ btn.textContent = original; btn.style.background=''; }, 1800);
+  });
+});
+</script>
+</body>
+</html>
